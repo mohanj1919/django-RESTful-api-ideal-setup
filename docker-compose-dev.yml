@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  db:
+    image: postgres
+    ports: 
+      - "5444:5432"
+  web:
+    build:
+      context: .
+      args:
+        build_env: "local"
+    command: python manage.py runserver --settings=config.settings.local
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
