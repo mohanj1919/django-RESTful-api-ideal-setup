@@ -31,6 +31,8 @@ if READ_DOT_ENV_FILE:
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = env('DJANGO_SECRET_KEY', default='fr+si28x_^u5pu3-75699-ih_z%rlb^e1jb8w&!%1w^7pyzh=(')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DJANGO_DEBUG', False)
@@ -51,7 +53,7 @@ THIRD_PARTY_APPS = (
 )
 
 LOCAL_APPS = (
-    'project.api',
+    'project.catalog',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

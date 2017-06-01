@@ -6,8 +6,8 @@ Following the Django setup from following series of blog posts. https://medium.c
 python3 -m venv <venv_name>
 
 * migrate tables command
-python manage.py migrate
+python manage.py migrate --settings=config.settings.local
 
 * run server command
-python manage.py runserver
+python manage.py runserver --settings=config.settings.local
 

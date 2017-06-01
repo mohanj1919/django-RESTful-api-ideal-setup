@@ -1,0 +1,35 @@
+version: '2'
+
+services:
+  postgresdb:
+    image: postgres
+    ports: 
+      - "5432:5432"
+
+  migrate_schema:
+    build:
+      context: .
+      args:
+        build_env: "local"
+    environment:
+      - DATABASE_HOST=postgresdb
+    command: python manage.py migrate --settings=config.settings.local
+    volumes:
+      - .:/app  
+    depends_on:
+      - postgresdb
+
+  api:
+    build:
+      context: .
+      args:
+        build_env: "local"
+    environment:
+      - DATABASE_HOST=postgresdb
+    command: python manage.py runserver --settings=config.settings.local
+    volumes:
+      - .:/app
+    ports:
+      - "8900:8000"
+    depends_on:
+      - postgresdb
