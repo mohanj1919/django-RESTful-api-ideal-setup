@@ -15,9 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from project import catalog
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('project.catalog.urls'))
+    url(r'^', include('curator.api.urls'))
 ]
